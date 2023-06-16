@@ -15,6 +15,8 @@ func Write(pid int, address uintptr, data []byte) error {
 		return err
 	}
 
+	defer windows.CloseHandle(h)
+
 	return write(h, address, data)
 }
 

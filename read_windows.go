@@ -16,6 +16,8 @@ func Read(pid int, dst []byte, address uintptr, size uint64) (n int, err error) 
 		return 0, err
 	}
 
+	defer windows.CloseHandle(h)
+
 	return read(h, dst, address, size)
 }
 
