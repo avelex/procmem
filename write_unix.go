@@ -52,3 +52,11 @@ func WriteUint64(pid int, address uintptr, value uint64) error {
 func WriteString(pid int, address uintptr, value string) error {
 	return Write(pid, uintptr(address), []byte(value))
 }
+
+func WriteFloat32(pid int, addres uintptr, value float32) error {
+	return Write(pid, addres, Float32ToBytes(value))
+}
+
+func WriteFloat64(pid int, addres uintptr, value float64) error {
+	return Write(pid, addres, Float64ToBytes(value))
+}

@@ -38,6 +38,14 @@ func WriteString(pid int, address uintptr, value string) error {
 	return Write(pid, address, []byte(value))
 }
 
+func WriteFloat32(pid int, address uintptr, value float32) error {
+	return Write(pid, address, Float32ToBytes(value))
+}
+
+func WriteFloat64(pid int, address uintptr, value float64) error {
+	return Write(pid, address, Float64ToBytes(value))
+}
+
 func write(handle windows.Handle, address uintptr, data []byte) error {
 	return windows.WriteProcessMemory(handle, address, &data[0], uintptr(len(data)), nil)
 }

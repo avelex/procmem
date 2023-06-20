@@ -49,6 +49,7 @@ func ReadUint64(pid int, address uintptr) (uint64, error) {
 
 func ReadString(pid int, address uintptr, size uint64) (string, error) {
 	buff := make([]byte, size)
+
 	n, err := Read(pid, buff, uintptr(address), size)
 	if err != nil {
 		return "", err
@@ -64,4 +65,26 @@ func ReadGoString(pid int, address uintptr, size uint64) (string, error) {
 	}
 
 	return ReadString(pid, uintptr(ptr), size)
+}
+
+func ReadFloat32(pid int, addres uintptr) (float32, error) {
+	buff := make([]byte, FLOAT32_LEN)
+
+	n, err := Read(pid, buff, addres, FLOAT32_LEN)
+	if err != nil {
+		return 0, err
+	}
+
+	return BytesToFloat32(buff[:n]), nil
+}
+
+func ReadFloat64(pid int, addres uintptr) (float64, error) {
+	buff := make([]byte, FLOAT64_LEN)
+
+	n, err := Read(pid, buff, addres, FLOAT64_LEN)
+	if err != nil {
+		return 0, err
+	}
+
+	return BytesToFloat64(buff[:n]), nil
 }

@@ -99,6 +99,14 @@ func (p *process) WriteString(address uintptr, value string) error {
 	return p.Write(address, []byte(value))
 }
 
+func (p *process) WriteFloat32(addres uintptr, value float32) error {
+	return p.Write(address, Float32ToBytes(value))
+}
+
+func (p *process) WriteFloat64(addres uintptr, value float64) error {
+	return p.Write(address, Float64ToBytes(value))
+}
+
 func (p *process) Close() error {
 	return windows.CloseHandle(p.handle)
 }
