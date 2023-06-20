@@ -16,23 +16,23 @@ func main() {
 
     want := "Hello"
 
-	got, err := proc.ReadString(uintptr(address), len(want))
-	if err != nil {
-		...
-	}
+    got, err := proc.ReadString(uintptr(address), len(want))
+    if err != nil {
+        ...
+    }
 
     fmt.Println(want == got) // true
 
     newString := "World"
 
     if err := proc.WriteString(uintptr(ptr), newString); err != nil {
-		...
-	}
+        ...
+    }
 
     got, err = proc.ReadString(uintptr(address), len(newString))
-	if err != nil {
-		...
-	}
+    if err != nil {
+        ...
+    }
 
     fmt.Println(newString == got) // true
 }
